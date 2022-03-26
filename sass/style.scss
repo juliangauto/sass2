@@ -1,0 +1,121 @@
+/*operación*/
+$ancho:600px;
+$blue: blue; 
+$green: green;
+
+.box_uno{
+    background-color: $blue;
+    width: $ancho/2;
+}
+
+.box_dos{
+    background-color: $green;
+    width: ($ancho/2)-50;
+}
+
+/*Condicionales*/
+
+$animal:gato;
+
+
+p{
+    @if $animal == gato {
+        color: blue;
+    } @else if $animal == perro{
+        color: red;
+    } @else if $animal == caballo{
+        color: aqua;
+    } @else {
+        color: black;
+    }
+}
+
+
+$mostrar: true;
+
+.contenido_tres{
+     @if $mostrar{
+         border: 2px dashed red;
+     }
+}
+
+/*Bucles*/
+
+$i:1;
+
+@for $i from 1 through 3 {
+    .casitodos-#{$i}{
+        background-color: darkblue;
+        color: white;
+        width: 200px * $i;
+    }
+}
+
+/*Each*/
+
+$dimension:200px;
+
+@each $animal in gato, perro, tigre{
+    .#{$animal}-fondo {
+       width: $dimension * 2;
+       height: $dimension;
+       background-image: 
+         url('../images/#{$animal}.jpg');
+       background-repeat: no-repeat;
+       background-position: center;
+       background-size: cover;
+       border: 2px solid crimson;  
+    }
+};
+
+/*mapas*/
+
+$redes:(
+    twitter #60b5f7,
+    facebook #3a5795,
+    instagram #C25E30,
+);
+
+@each $red, $color in $redes{
+    .btn--#{$red}{
+        background-color: $color;
+    }
+}; 
+
+.redsocial{
+    border: 3px solid red;
+    background-color: gold;
+}
+
+.redsocial--social{
+    @extend .redsocial;
+    border-radius: 5px; 
+};
+
+.redsocial--nueva{
+    @extend .redsocial;
+    border: 5px solid black;
+}
+
+.redsocial--mark{
+    @extend .redsocial;
+    background-color: red;
+}
+
+@mixin size ($width, $height){
+    height:$height ;
+    width:$width ;   
+}
+
+.my_mixin {
+    @include size (500px, 50px);
+    background-color: chartreuse;
+
+}
+    
+
+
+     
+
+       
+    
